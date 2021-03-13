@@ -1,12 +1,10 @@
+import React from 'react'
+import MainComponent from './Components/MainComponent.js';
 
-function App() {
+export default function App() {
   return (
-
-    {
-
-    }
-
-  );
+    <div>
+      <MainComponent/>
+    </div>
+  )
 }
-
-export default App;
