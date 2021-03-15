@@ -87,8 +87,56 @@ const useStyles = makeStyles({
 
 export default function InfoBox() {
 
-
+    const [checkFormRegister, setCheckFormRegister] = useState(true);
     const classes = useStyles();
+
+
+    useEffect(() => {
+        changeFormType();
+        console.log('Form Type: ', checkFormRegister);
+    },[checkFormRegister]);
+
+
+    const changeFormType = () => {
+        if(checkFormRegister === false)
+        {
+            return(
+                <div>
+                    Hello
+                </div>
+            )
+        }
+        else
+        {
+            return(
+                <div>
+                    <div className={classes.divTextContent}>
+                        <Typography className={classes.textContentHeading} variant='h5'> 
+                            Sign In
+                        </Typography>
+                    </div>
+
+                    <form className={classes.formContent} noValidate autoComplete='off'>
+                        <div className={classes.divInput}>
+                            <Input className={classes.inputContent} id='name-Input' placeholder="Username"/>
+                        </div>
+                        <div className={classes.divInput}>
+                            <Input className={classes.inputContent} id='email-Input' placeholder='Email' />   
+                        </div>
+                        <div className={classes.divInput}>
+                            <Input className={classes.inputContent} id='Password' placeholder='Password' type='password' />
+                        </div> 
+
+                        <div className={classes.divBtn}>
+                            <Button className={classes.registerBtn} variant='contained' >Register</Button>
+                        </div>
+
+                    </form>
+                </div>
+            )
+        }
+    }
+
 
 
     return (
@@ -138,30 +186,16 @@ export default function InfoBox() {
                                 
 
                                 <div className={classes.divForm}>
-
-                                    <div className={classes.divTextContent}>
-                                        <Typography className={classes.textContentHeading} variant='h5'> 
-                                            Sign In
-                                        </Typography>
+        
+                                    <div>
+                                        {
+                                            changeFormType()
+                                        }
+                                         <div className={classes.divBtn}>
+                                            <Typography className='' variant='body1' onClick={()=> setCheckFormRegister(false)}>Sign In</Typography>
+                                        </div>
                                     </div>
-
-                                    <form className={classes.formContent} noValidate autoComplete='off'>
-                                        <div className={classes.divInput}>
-                                            <Input className={classes.inputContent} id='name-Input' placeholder="Username"/>
-                                        </div>
-                                        <div className={classes.divInput}>
-                                            <Input className={classes.inputContent} id='email-Input' placeholder='Email' />   
-                                        </div>
-                                        <div className={classes.divInput}>
-                                            <Input className={classes.inputContent} id='Password' placeholder='Password' type='password' />
-                                        </div> 
-
-                                        <div className={classes.divBtn}>
-                                            <Button className={classes.registerBtn} variant='contained' >Register</Button>
-                                        </div>
-
-                                    </form>
-
+                                 
                                 </div>
 
                                 <div className={classes.divSocialMedia}>
