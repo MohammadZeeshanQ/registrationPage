@@ -11,7 +11,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor:'#eeeeee',
     },
     wrapper:{
-        padding: '6em 0',
+        padding: '7em 0',
         '@media (max-width:600px)':{
             padding:'1em 0',
         }

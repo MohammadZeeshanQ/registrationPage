@@ -19,8 +19,9 @@ const useStyles = makeStyles({
         },
     },
     wrapper:{
-        backgroundColor:'#fcfcfc',
+        backgroundColor:'#ffffff',
         borderRadius:'1.5em',
+        boxShadow:'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px',
     },
     divMotive:{
         padding:'3em 0',
@@ -29,8 +30,7 @@ const useStyles = makeStyles({
         },
     },
     motiveText:{
-        fontFamily:'Sans sarif, Montserrat',
-        fontWeight:'800',
+        fontWeight:'600',
         textAlign:'center',
         '@media (max-width:600px)':{
             fontWeight:'700',
@@ -55,8 +55,7 @@ const useStyles = makeStyles({
         }
     },
     textContentHeading:{
-        fontFamily:'Sans sarif, Montserrat',
-        fontWeight:'700',
+        fontWeight:'Normal',
         '@media (max-width:600px)':{
             fontSize:'1.9em',
         }
@@ -65,7 +64,7 @@ const useStyles = makeStyles({
         margin:'1.2em 0',
     },
     divBtn:{
-        margin:'2em 0',
+        margin:'3em 0 .5em 0',
     },
     registerBtn:{
         backgroundColor:'#6a1b9a',
@@ -75,10 +74,15 @@ const useStyles = makeStyles({
             transition: '0.4s',
         },
     }, 
+    transitionBtn:{
+        textTransform:'none',
+        color:'#a3a3c2'
+    },
     socialContent:{
         textAlign:'center',
+        padding:'1em 0 2em 0',
         '@media (max-width:600px)':{
-            padding:'2em 0',
+            padding:'2em 0 3em 0',
         }
     },
 
@@ -87,7 +91,7 @@ const useStyles = makeStyles({
 
 export default function InfoBox() {
 
-    const [checkFormRegister, setCheckFormRegister] = useState(true);
+    const [checkFormRegister, setCheckFormRegister] = useState("Register");
     const classes = useStyles();
 
 
@@ -98,20 +102,50 @@ export default function InfoBox() {
 
 
     const changeFormType = () => {
-        if(checkFormRegister === false)
+        if(checkFormRegister === "Login")
         {
             return(
+                //  This will return the Login Form Content
                 <div>
-                    Hello
+
+                    <form className={classes.formContent} noValidate autoComplete='off'>
+
+                        <Typography className={classes.textContentHeading} variant='h4'>
+                            Login
+                        </Typography>
+
+                        <div className={classes.divInput}>
+                            <Input className={classes.inputContent} id='name-Input' placeholder="Username"/>
+                        </div>
+            
+                        <div className={classes.divInput}>
+                            <Input className={classes.inputContent} id='Password' placeholder='Password' type='password' />
+                        </div> 
+
+                        <div className={classes.divBtn}>
+                            <Button className={classes.registerBtn} type='submit' variant='contained' >Sign In</Button>
+                        </div>
+
+                        <div>
+                            <Button varaint='outlined' className={classes.transitionBtn} onClick={()=>setCheckFormRegister("Register")}>
+                                New User?
+                            </Button>
+                        </div>
+
+                    </form>
+
+                  
                 </div>
             )
         }
         else
         {
             return(
+                //  This will return the Registration Form Content
                 <div>
                     <div className={classes.divTextContent}>
-                        <Typography className={classes.textContentHeading} variant='h5'> 
+
+                        <Typography className={classes.textContentHeading} variant='h4'> 
                             Sign In
                         </Typography>
                     </div>
@@ -128,7 +162,13 @@ export default function InfoBox() {
                         </div> 
 
                         <div className={classes.divBtn}>
-                            <Button className={classes.registerBtn} variant='contained' >Register</Button>
+                            <Button className={classes.registerBtn} type='submit' variant='contained' >Register</Button>
+                        </div>
+
+                        <div>
+                            <Button varaint='outlined' className={classes.transitionBtn} onClick={()=>setCheckFormRegister("Login")}>
+                                Already have an account?
+                            </Button>
                         </div>
 
                     </form>
@@ -169,7 +209,7 @@ export default function InfoBox() {
                                 </div>
 
                                 <div className={classes.divImage}>
-                                    <img src={PersonImage} alt='Person Image' className={classes.imagePerson}/>
+                                    <img src={PersonImage} alt='Person' className={classes.imagePerson}/>
                                 </div>
 
                             </div>
@@ -189,11 +229,11 @@ export default function InfoBox() {
         
                                     <div>
                                         {
+                                            // Displaying Registration or Sign In based on the condition TRUE or FALSE
+                                            //  True = 
                                             changeFormType()
                                         }
-                                         <div className={classes.divBtn}>
-                                            <Typography className='' variant='body1' onClick={()=> setCheckFormRegister(false)}>Sign In</Typography>
-                                        </div>
+    
                                     </div>
                                  
                                 </div>
@@ -202,9 +242,9 @@ export default function InfoBox() {
 
                                     <div className={classes.socialContent}>
 
-                                        <FacebookIcon style={{fontSize:'2.5em', color:'blue',}} />
-                                        <LinkedInIcon style={{fontSize:'2.5em', color:'darkblue'}} />
-                                        <GTranslateIcon style={{fontSize:'2.5em', color:'darkorange'}} />
+                                        <FacebookIcon style={{fontSize:'2.2em', color:'blue', marginRight:'.1em'}} />
+                                        <LinkedInIcon style={{fontSize:'2.2em', color:'darkblue', marginRight:'.1em'}} />
+                                        <GTranslateIcon style={{fontSize:'2.2em', color:'darkorange', marginRight:'.1em'}} />
                                     </div>
 
                                 </div>
