@@ -30,10 +30,9 @@ const useStyles = makeStyles({
         },
     },
     motiveText:{
-        fontWeight:'600',
+        fontFamily:'Satisfy',
         textAlign:'center',
         '@media (max-width:600px)':{
-            fontWeight:'700',
         }
     },
     divImage:{
@@ -63,10 +62,14 @@ const useStyles = makeStyles({
     divInput:{
         margin:'1.2em 0',
     },
+    inputContent:{
+        fontFamily:'Lexend', 
+    },
     divBtn:{
         margin:'3em 0 .5em 0',
     },
     registerBtn:{
+        fontFamily:'Lexend',
         backgroundColor:'#6a1b9a',
         color:'white',
         '&:hover':{
@@ -75,6 +78,7 @@ const useStyles = makeStyles({
         },
     }, 
     transitionBtn:{
+        fontFamily:'Lexend',
         textTransform:'none',
         color:'#a3a3c2'
     },
@@ -202,7 +206,7 @@ export default function InfoBox() {
 
                                 <div className={classes.divMotive}>
 
-                                    <Typography variant='h4' className={classes.motiveText}>
+                                    <Typography variant='h3' className={classes.motiveText}>
                                         Welcome to Kemo!
                                     </Typography>
 
