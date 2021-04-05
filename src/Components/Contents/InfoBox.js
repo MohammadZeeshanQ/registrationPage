@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import {makeStyles, Grid, Button, Typography, Input} from '@material-ui/core';
+import {makeStyles, Grid, Button, Typography, Input, FormControlLabel, Switch} from '@material-ui/core';
 
 //Importing Picture from assets folder
 import PersonImage from '../Assets/Images/undraw_Nature.png';
@@ -8,6 +8,9 @@ import PersonImage from '../Assets/Images/undraw_Nature.png';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import GTranslateIcon from '@material-ui/icons/GTranslate';
 import LinkedInIcon from '@material-ui/icons/LinkedIn';
+
+// const darkMode = '#696969';
+// const lightMode = '#ffffff';
 
 const useStyles = makeStyles({
 
@@ -19,7 +22,12 @@ const useStyles = makeStyles({
         },
     },
     wrapper:{
-        backgroundColor:'#ffffff',
+        backgroundColor: "#ffffff",
+        borderRadius:'1.5em',
+        boxShadow:'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px',
+    },
+    darkWrapper:{
+        backgroundColor: '#696969',
         borderRadius:'1.5em',
         boxShadow:'rgba(50, 50, 93, 0.25) 0px 30px 60px -12px, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px',
     },
@@ -96,18 +104,28 @@ const useStyles = makeStyles({
 export default function InfoBox() {
 
     const [checkFormRegister, setCheckFormRegister] = useState("Register");
+    const [formToggle, setFormToggle] = useState(false)
+
+
     const classes = useStyles();
 
 
     useEffect(() => {
         changeFormType();
         console.log('Form Type: ', checkFormRegister);
-    },[checkFormRegister]);
+    },[checkFormRegister],[formToggle]);
+
+
+    const changeFormMode = () =>{
+        setFormToggle(!formToggle);
+        console.log('Dark Mode: ', formToggle)
+    };
 
 
     const changeFormType = () => {
         if(checkFormRegister === "Login")
         {
+            
             return(
                 //  This will return the Login Form Content
                 <div>
@@ -132,7 +150,7 @@ export default function InfoBox() {
 
                         <div>
                             <Button varaint='outlined' className={classes.transitionBtn} onClick={()=>setCheckFormRegister("Register")}>
-                                New User?
+                                Not a member? Sign up
                             </Button>
                         </div>
 
@@ -186,7 +204,7 @@ export default function InfoBox() {
     return (
         <div className={classes.root}>
 
-            <div className={classes.wrapper}>
+            <div className={formToggle ? classes.darkWrapper : classes.wrapper}>
 
                 <div className={classes.boxDiv}>
 
@@ -234,7 +252,8 @@ export default function InfoBox() {
                                     <div>
                                         {
                                             // Displaying Registration or Sign In based on the condition TRUE or FALSE
-                                            //  True = 
+                                            //  True = Register Content
+                                            //  False = Login Content
                                             changeFormType()
                                         }
     
@@ -260,6 +279,13 @@ export default function InfoBox() {
                     </Grid>
 
                 </div>
+                <Switch
+                    checked={formToggle}
+                    onChange={changeFormMode}
+                    color='primary'
+                >
+
+                </Switch>
 
             </div>
             

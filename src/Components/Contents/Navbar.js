@@ -23,7 +23,7 @@ export default function Navbar() {
     const classes = useStyles();
 
     return (
-        <div className={classes.root}>
+        <div className={classes.root} id='rootAppBar'>
             <AppBar position='fixed' className={classes.appBar}>
                 <Toolbar className={classes.toolBar}>
                     <IconButton size='small' className={classes.logoBtn}>
